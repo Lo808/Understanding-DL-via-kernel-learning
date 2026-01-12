@@ -1,28 +1,26 @@
 from src.get_data import inject_label_noise
 
 class Trainer:
+    """
+    Class to train a model and help for plotting curves
+    """
 
-    def __init__(self,model,epoch_nb) -> None:
+    def __init__(self,model) -> None:
         self.model=model
-        self.epoch_nb=epoch_nb
         self.train_sizes=[int(10**i) for i in range(2,5)]
         self.noise_ratios=[0.0,0.01,0.1]
         self.model_type=model.model_type
-
         pass
 
-    def set_train_data(self,X_train,y_train):
+    def set_data(self,X_train,y_train,X_test,y_test):
         self.X_train=X_train
         self.y_train=y_train
         self.model.set_train_data(X_train,y_train)
-        pass
-
-    def set_test_data(self,X_test,y_test):
         self.X_test=X_test
         self.y_test=y_test
         pass
 
-    
+
     def train_epochs(self,epoch_nb=None):
 
         """
